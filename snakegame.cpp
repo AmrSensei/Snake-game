@@ -185,6 +185,7 @@ int main()
     char tw;
     cin >> tw;
     (tw == 'y') ? throwwalls = true : throwwalls = false;
+    system("cls");
     setup();
     while (!gameover)
     {
