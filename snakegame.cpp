@@ -9,8 +9,9 @@ const int width = 20;
 const int height = 20;
 bool gameover, playagain = true;
 int x, y, fruitx, fruity, score, ntail;
+vector<int>scores;
 bool throwwalls;
-int tailx[100], taily[100];
+int tailx[1000], taily[1000];
 enum eDirecton { STOP = 0, LEFT, RIGHT, UP, DOWN };
 eDirecton dir;
 void setup()
@@ -180,22 +181,43 @@ void logic()
 }
 int main()
 {
-    score = 0;
-    cout << "Do you want to go throw walls : y/n ? " << endl;
-    char tw;
-    cin >> tw;
-    (tw == 'y') ? throwwalls = true : throwwalls = false;
-    system("cls");
-    setup();
-    while (!gameover)
+    while (playagain)
     {
-        draw();
-        input();
-        logic();
-        Sleep(50);
+        score = 0;
+        cout << "DO you want to go throw walls : y/n ? " << endl;
+        char tw;
+        cin >> tw;
+        (tw == 'y') ? throwwalls = true : throwwalls = false;
+        system("cls");
+        setup();
+        while (!gameover)
+        {
+            draw();
+            input();
+            logic();
+            Sleep(30);
+        }
+        system("cls");
+        cout << "You lost" << endl;
+        scores.push_back(score);
+        cout << "Score = " << score << endl;
+        sort(scores.begin(), scores.end());
+        reverse(scores.begin(), scores.end());
+        cout << "Heighst Score = " << scores[0] << endl;
+        cout << "Do you want to play again : y/n ? " << endl;
+        char pa;
+        cin >> pa;
+        if (pa == 'y')
+        {
+            playagain = true;
+            gameover = false;
+        }
+        else playagain = false;
+        system("cls");
     }
-    system("cls");
-    cout << "You lost" << endl;
-    cout << "Score = " << score << endl;
+    cout << "-------------------------" << endl;
+    cout << "MOVE USING WASD" << endl;
+    cout << "END THE GAME WITH 'P'" << endl;
+    cout << "MADE BY : Amr Mustafa" << endl;
     return 0;
 }
