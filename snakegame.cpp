@@ -11,7 +11,7 @@ bool gameover, playagain = true;
 int x, y, fruitx, fruity, score, ntail;
 vector<int>scores;
 bool throwwalls;
-int tailx[1000], taily[1000];
+int tailx[100], taily[100];
 enum eDirecton { STOP = 0, LEFT, RIGHT, UP, DOWN };
 eDirecton dir;
 void setup()
@@ -183,7 +183,13 @@ int main()
 {
     while (playagain)
     {
-        score = 0;
+        ntail = 0;
+        cout << "Please choose the game difficulty : " << endl;
+        cout << "1 - Easy" << endl;
+        cout << "2 - Normal" << endl;
+        cout << "3 - Hard" << endl;
+        char diff;
+        cin >> diff;
         cout << "DO you want to go throw walls : y/n ? " << endl;
         char tw;
         cin >> tw;
@@ -195,7 +201,15 @@ int main()
             draw();
             input();
             logic();
-            Sleep(30);
+            switch (diff)
+            {
+            case '1':
+                Sleep(60);
+            case '2':
+                Sleep(40);
+            case '3':
+                Sleep(20);
+            }
         }
         system("cls");
         cout << "You lost" << endl;
@@ -219,5 +233,7 @@ int main()
     cout << "MOVE USING WASD" << endl;
     cout << "END THE GAME WITH 'P'" << endl;
     cout << "MADE BY : Amr Mustafa" << endl;
+    cout << "-------------------------" << endl;
+
     return 0;
 }
